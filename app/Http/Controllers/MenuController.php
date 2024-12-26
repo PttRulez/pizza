@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Drink;
-use App\Models\Pizza;
+use App\Models\Good;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
     public function index()
     {
-        $pizzas = Pizza::all()->map(function (Pizza $pizza) {
-            return $pizza->toMenuItem();
-        });
+        $goods = Good::all();
         
-        $drinks = Drink::all()->map(function (Drink $drink) {
-            return $drink->toMenuItem();
-        });;
-        
-        return response()->json([
-            'pizzas' => $pizzas,
-            'drinks' => $drinks,
-        ]);
+        return response()->json($goods);
     }
 }

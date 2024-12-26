@@ -2,13 +2,8 @@
 
 namespace App\Providers;
 
-use App\Enums\GoodType;
 use App\Exceptions\NotAdminException;
-use App\Models\Drink;
-use App\Models\Pizza;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
             }
             return true;
         });
+        
+//         ParallelTesting::setUpTestDatabase(function (string $database, int $token) {
+//            Artisan::call('db:seed');
+//        });
         
     }
 }

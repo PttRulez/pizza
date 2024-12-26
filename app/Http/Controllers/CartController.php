@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\GoodType;
-use App\Exceptions\PizzaLimitExceededException;
-use App\Http\Requests\AddMultipleToCartRequest;
-use App\Http\Requests\AddToCartRequest;
 use App\Models\CartItem;
 use App\Models\Good;
 use Illuminate\Http\JsonResponse;
@@ -15,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request): JsonResponse
+    public function store(Request $request): JsonResponse
     {
         $user = Auth::user();
         $data = $request->validate([
@@ -57,7 +54,7 @@ class CartController extends Controller
         return response()->json(['message' => 'Item added to cart successfully']);
     }
     
-    public function addMultipleToCart(Request $request): JsonResponse
+    public function update(Request $request): JsonResponse
     {
         $user = Auth::user();
         $data = $request->validate([
@@ -99,7 +96,7 @@ class CartController extends Controller
         return response()->json(['message' => 'Items added to cart successfully']);
     }
     
-    public function getCart()
+    public function index(Request $request): JsonResponse
     {
         $user = auth()->user();
         
